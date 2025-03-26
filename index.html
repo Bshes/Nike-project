@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpongeBob Talking and Laughing</title>
+    <style>
+        .spongebob {
+            position: relative;
+            width: 150px;
+            height: 200px;
+            margin: 50px auto;
+        }
+        .body {
+            width: 150px;
+            height: 150px;
+            background: #ffeb3b; /* Yellow */
+            border: 5px solid #000;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            overflow: hidden;
+        }
+        .eyes {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+        .eye {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .pupil {
+            width: 10px;
+            height: 10px;
+            background: #2196f3; /* Blue */
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .mouth {
+            width: 60px;
+            height: 20px;
+            background: #d32f2f; /* Red */
+            border: 2px solid #000;
+            border-radius: 10px;
+            position: absolute;
+            top: 80px;
+            left: 45px;
+        }
+        .mouth.talking {
+            animation: talk 0.3s infinite alternate;
+        }
+        .tie {
+            width: 20px;
+            height: 30px;
+            background: #f44336; /* Red */
+            position: absolute;
+            top: 150px;
+            left: 65px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+        .arm {
+            width: 20px;
+            height: 60px;
+            background: #ffeb3b;
+            border: 2px solid #000;
+            position: absolute;
+            top: 80px;
+        }
+        .arm.left { left: -22px; }
+        .arm.right { left: 150px; }
+        .leg {
+            width: 20px;
+            height: 40px;
+            background: #ffeb3b;
+            border: 2px solid #000;
+            position: absolute;
+            top: 200px;
+        }
+        .leg.left { left: 40px; }
+        .leg.right { left: 90px; }
+
+        /* Animations */
+        @keyframes talk {
+            0% { height: 20px; }
+            100% { height: 30px; }
+        }
+        @keyframes laugh {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .spongebob.laughing .body {
+            animation: laugh 0.1s infinite;
+        }
+
+        /* Buttons */
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="spongebob">
+        <div class="body">
+            <div class="eyes">
+                <div class="eye"><div class="pupil"></div></div>
+                <div class="eye"><div class="pupil"></div></div>
+            </div>
+            <div class="mouth"></div>
+            <div class="tie"></div>
+        </div>
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+        <div class="leg left"></div>
+        <div class="leg right"></div>
+    </div>
+    <div>
+        <button onclick="startTalking()">Talk</button>
+        <button onclick="stopTalking()">Stop Talking</button>
+        <button onclick="laugh()">Laugh</button>
+    </div>
+
+    <script>
+        const spongebob = document.querySelector('.spongebob');
+        const mouth = document.querySelector('.mouth');
+
+        function startTalking() {
+            mouth.classList.add('talking');
+        }
+
+        function stopTalking() {
+            mouth.classList.remove('talking');
+        }
+
+        function laugh() {
+            spongebob.classList.add('laughing');
+            // Simulate SpongeBob's laugh sound (text-based, no audio here)
+            console.log("Hehehehehe!");
+            setTimeout(() => {
+                spongebob.classList.remove('laughing');
+            }, 2000); // Laugh for 2 seconds
+        }
+    </script>
+</body>
+</html>
