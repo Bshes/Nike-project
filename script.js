@@ -1,7 +1,7 @@
 // GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero Text Animation
+// Hero Animation
 gsap.from(".hero h1", {
     scrollTrigger: {
         trigger: ".hero",
@@ -21,7 +21,7 @@ darkModeToggle.addEventListener('click', () => {
     darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 });
 
-// Fetch Products from API
+// Product Fetching
 async function fetchProducts() {
     const loader = document.querySelector('.loader');
     loader.style.display = 'block';
@@ -32,14 +32,15 @@ async function fetchProducts() {
         loader.style.display = 'none';
         renderProducts(products);
     } catch (error) {
-        loader.innerHTML = 'Error loading products. Check console.';
-        console.error(error);
+        loader.innerHTML = '⚠️ Error loading products. Please try again later.';
+        console.error('Fetch error:', error);
     }
 }
 
-// Render Products Dynamically
+// Render Products
 function renderProducts(products) {
     const productGrid = document.querySelector('.product-grid');
+    productGrid.innerHTML = ''; // Clear previous content
     
     products.slice(0, 6).forEach(product => {
         const card = document.createElement('div');
@@ -47,50 +48,9 @@ function renderProducts(products) {
         card.innerHTML = `
             <img src="${product.image}" alt="${product.title}" loading="lazy">
             <h3>${product.title}</h3>
+            <p>$${product.price}</p>
         `;
         productGrid.appendChild(card);
     });
 
-    // Initialize GSAP animations for product cards
-    gsap.utils.toArray(".product-card").forEach(card => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.5,
-        });
-    });
-}
-
-// Form Validation & Submission
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Simple validation
-    const isValid = contactForm.checkValidity();
-    if (!isValid) return;
-
-    // Submit via Formspree
-    const formData = new FormData(contactForm);
-    const response = await fetch('https://formspree.io/f/your-form-id', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    });
-
-    if (response.ok) {
-        alert('Message sent!');
-        contactForm.reset();
-    } else {
-        alert('Error sending message.');
-    }
-});
-
-// Initialize
-fetchProducts();
+    // An
