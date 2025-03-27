@@ -1,0 +1,104 @@
+/* Global Styles */
+:root {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --accent-color: #ff0000;
+}
+
+body.dark-mode {
+    --primary-color: #1a1a1a;
+    --secondary-color: #e0e0e0;
+    --accent-color: #ff4444;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--primary-color);
+    background: var(--secondary-color);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.nav-links a {
+    color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('nike-hero.jpg') no-repeat center center/cover;
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero span {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* GSAP Animation Classes */
+.fade-in {
+    opacity: 0;
+}
+
+/* Contact Form */
+.contact {
+    padding: 2rem;
+    text-align: center;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+.contact button {
+    padding: 1rem 2rem;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
