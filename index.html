@@ -2,154 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SpongeBob Talking and Laughing</title>
-    <style>
-        .spongebob {
-            position: relative;
-            width: 150px;
-            height: 200px;
-            margin: 50px auto;
-        }
-        .body {
-            width: 150px;
-            height: 150px;
-            background: #ffeb3b; /* Yellow */
-            border: 5px solid #000;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            overflow: hidden;
-        }
-        .eyes {
-            position: absolute;
-            top: 20px;
-            left: 30px;
-        }
-        .eye {
-            width: 30px;
-            height: 30px;
-            background: white;
-            border: 2px solid #000;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 10px;
-        }
-        .pupil {
-            width: 10px;
-            height: 10px;
-            background: #2196f3; /* Blue */
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .mouth {
-            width: 60px;
-            height: 20px;
-            background: #d32f2f; /* Red */
-            border: 2px solid #000;
-            border-radius: 10px;
-            position: absolute;
-            top: 80px;
-            left: 45px;
-        }
-        .mouth.talking {
-            animation: talk 0.3s infinite alternate;
-        }
-        .tie {
-            width: 20px;
-            height: 30px;
-            background: #f44336; /* Red */
-            position: absolute;
-            top: 150px;
-            left: 65px;
-            clip-path: polygon(0 0, 100% 0, 50% 100%);
-        }
-        .arm {
-            width: 20px;
-            height: 60px;
-            background: #ffeb3b;
-            border: 2px solid #000;
-            position: absolute;
-            top: 80px;
-        }
-        .arm.left { left: -22px; }
-        .arm.right { left: 150px; }
-        .leg {
-            width: 20px;
-            height: 40px;
-            background: #ffeb3b;
-            border: 2px solid #000;
-            position: absolute;
-            top: 200px;
-        }
-        .leg.left { left: 40px; }
-        .leg.right { left: 90px; }
-
-        /* Animations */
-        @keyframes talk {
-            0% { height: 20px; }
-            100% { height: 30px; }
-        }
-        @keyframes laugh {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        .spongebob.laughing .body {
-            animation: laugh 0.1s infinite;
-        }
-
-        /* Buttons */
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike Clone - Portfolio Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="spongebob">
-        <div class="body">
-            <div class="eyes">
-                <div class="eye"><div class="pupil"></div></div>
-                <div class="eye"><div class="pupil"></div></div>
-            </div>
-            <div class="mouth"></div>
-            <div class="tie"></div>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle">🌙</button>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Nike Clone</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1 data-aos="zoom-in">Just Do It.<span>Elevate Your Game.</span></h1>
+        <button class="cta">Shop Now</button>
+    </section>
+
+    <!-- Dynamic Product Grid -->
+    <section id="products" class="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid" data-aos="fade-up">
+            <!-- Products populated via JavaScript -->
         </div>
-        <div class="arm left"></div>
-        <div class="arm right"></div>
-        <div class="leg left"></div>
-        <div class="leg right"></div>
-    </div>
-    <div>
-        <button onclick="startTalking()">Talk</button>
-        <button onclick="stopTalking()">Stop Talking</button>
-        <button onclick="laugh()">Laugh</button>
-    </div>
+    </section>
 
-    <script>
-        const spongebob = document.querySelector('.spongebob');
-        const mouth = document.querySelector('.mouth');
+    <!-- Contact Form -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
 
-        function startTalking() {
-            mouth.classList.add('talking');
-        }
+    <footer>
+        <p>&copy; 2024 Nike Clone. <em>Inspired by Nike for portfolio purposes only.</em></p>
+    </footer>
 
-        function stopTalking() {
-            mouth.classList.remove('talking');
-        }
-
-        function laugh() {
-            spongebob.classList.add('laughing');
-            // Simulate SpongeBob's laugh sound (text-based, no audio here)
-            console.log("Hehehehehe!");
-            setTimeout(() => {
-                spongebob.classList.remove('laughing');
-            }, 2000); // Laugh for 2 seconds
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
